@@ -1,160 +1,170 @@
-
-<!DOCTYPE html>
-<html lang="pt">
+<!DOCTYPE html><html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>❤️RuJu❤️ - Nosso Amor</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>❤️RuJu❤️</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      height: 100vh;
-      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-      overflow: hidden;
+      margin: 0;
       font-family: 'Arial', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.2;
-      animation: twinkle 2s infinite ease-in-out alternate;
-    }
-
-    @keyframes twinkle {
-      0% { opacity: 0.1; }
-      100% { opacity: 1; }
-    }
-
-    .heart-fall {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: pink;
-      transform: rotate(45deg);
-      animation: fall 10s linear infinite;
-      opacity: 0.8;
-      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 50% 80%, 18% 100%, 0% 38%);
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-50px) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      padding: 30px;
-      text-align: center;
+      background: radial-gradient(ellipse at bottom, #0b0b23 0%, #000 100%);
+      overflow: hidden;
       color: white;
-      z-index: 10;
-      max-width: 350px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    }
+      cursor: none;
+    }.galaxy {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: -3;
+}
 
-    .card img {
-      width: 140px;
-      height: 140px;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid pink;
-    }
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
+}
 
-    h1 {
-      margin-top: 15px;
-      font-size: 28px;
-      color: pink;
-      font-family: cursive;
-    }
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
 
-    p {
-      font-size: 16px;
-      margin-top: 10px;
-      color: #f5f5f5;
-    }
+.heart-fall {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/833/833472.png');
+  background-size: cover;
+  animation: fall linear infinite;
+  z-index: -2;
+}
 
-    #countdown {
-      font-size: 20px;
-      margin-top: 15px;
-      font-weight: bold;
-      color: #ffffff;
-    }
+@keyframes fall {
+  0% { transform: translateY(-50px); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+.heart-pulse {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: red;
+  box-shadow: 0 0 10px red;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+  top: 10%;
+  left: 10%;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px red;
+  }
+  50% {
+    transform: scale(1.4);
+    box-shadow: 0 0 20px red;
+  }
+}
+
+.custom-cursor {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/833/833472.png');
+  background-size: contain;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 3px solid white;
+  object-fit: cover;
+}
+
+h1 {
+  margin: 20px 0 10px;
+  font-size: 2.5rem;
+}
+
+.timer {
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
   </style>
 </head>
 <body>
+  <div class="galaxy" id="galaxy"></div>
+  <div class="heart-pulse" style="top: 20%; left: 80%;"></div>
+  <div class="heart-pulse" style="top: 70%; left: 30%;"></div>
+  <div class="heart-pulse" style="top: 50%; left: 50%;"></div>
+  <div class="custom-cursor" id="cursor"></div>  <div class="content">
+    <img src="foto1.jpg" alt="Foto do casal" />
+    <h1>❤️RuJu❤️</h1>
+    <div class="timer" id="timer"></div>
+    <audio autoplay loop>
+      <source src="musica_extraida.mp3" type="audio/mp3" />
+      Seu navegador não suporta áudio.
+    </audio>
+  </div>  <script>
+    const galaxy = document.getElementById("galaxy");
+    const cursor = document.getElementById("cursor");
 
-  <audio autoplay loop>
-    <source src="musica_extraida.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
-
-  <script>
     for (let i = 0; i < 100; i++) {
       const star = document.createElement("div");
       star.className = "star";
       star.style.top = Math.random() * 100 + "%";
       star.style.left = Math.random() * 100 + "%";
-      star.style.animationDuration = (Math.random() * 2 + 1) + "s";
-      document.body.appendChild(star);
+      galaxy.appendChild(star);
     }
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 30; i++) {
       const heart = document.createElement("div");
       heart.className = "heart-fall";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDelay = (Math.random() * 10) + "s";
-      heart.style.opacity = Math.random();
-      document.body.appendChild(heart);
-    }
-  </script>
-
-  <div class="card">
-    <img src="foto1.jpg" alt="Foto do casal">
-    <h1>❤️RuJu❤️</h1>
-    <p>Juntos desde 24 de Fevereiro de 2024</p>
-    <div id="countdown">Carregando...</div>
-  </div>
-
-  <script>
-    const countdownElement = document.getElementById("countdown");
-    const startDate = new Date("2024-02-24T00:00:00").getTime();
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const diff = now - startDate;
-
-      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-      const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
-      const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      countdownElement.innerHTML = `${years} anos, ${months} meses, ${days} dias, ${hours}h ${minutes}m ${seconds}s`;
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+      heart.style.animationDelay = (Math.random() * 5) + "s";
+      galaxy.appendChild(heart);
     }
 
-    setInterval(updateCountdown, 1000);
-  </script>
+    function startTimer() {
+      const startDate = new Date("2024-02-24T00:00:00");
+      const timer = document.getElementById("timer");
 
-</body>
+      setInterval(() => {
+        const now = new Date();
+        const diff = now - startDate;
+        const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+        const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44)) % 12;
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+
+        timer.innerHTML = `${years} ano(s), ${months} mês(es), ${days} dia(s), ${hours}h ${minutes}m ${seconds}s juntos`;
+      }, 1000);
+    }
+
+    document.addEventListener("mousemove", (e) => {
+      cursor.style.top = e.pageY + "px";
+      cursor.style.left = e.pageX + "px";
+    });
+
+    startTimer();
+  </script></body>
 </html>
